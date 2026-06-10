@@ -54,17 +54,17 @@ body:
   - type: input
     id: location
     attributes:
-      label: Location (optional)
+      label: Location
       description: City / region.
     validations:
-      required: false
+      required: true
   - type: input
     id: website
     attributes:
-      label: Website or social (optional)
-      description: A link or @handle, if you have one.
+      label: Website or social
+      description: A link or @handle.
     validations:
-      required: false
+      required: true
   - type: textarea
     id: about
     attributes:
