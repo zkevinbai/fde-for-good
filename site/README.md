@@ -12,12 +12,32 @@ python3 -m http.server 8000
 # open http://localhost:8000
 ```
 
-## Deploy to GitHub Pages
+## Deploy
 
-1. Push the repo to GitHub.
-2. Repo **Settings → Pages**.
-3. Source: **Deploy from a branch**, branch `main`, folder `/site` (or move `index.html` to the root / a `docs/` folder if you prefer Pages' built-in options).
-4. Save — your site goes live at `https://<user>.github.io/fde-for-good/`.
+The site is static (one `index.html`, no build), so any static host works.
+Hosting is **separate** from the form backend — see "Connecting the contact
+forms" below; the site works either way, the forms just need the Sheet wired up.
+
+### Vercel (recommended)
+
+A [`vercel.json`](../vercel.json) at the repo root already points Vercel at the
+`site/` folder, so there's nothing to configure.
+
+1. Push to GitHub (done).
+2. At [vercel.com/new](https://vercel.com/new), **Import** this repo.
+3. Framework preset: **Other**. Leave build/output settings as-is — `vercel.json`
+   handles it (no build command, output dir = `site`).
+4. **Deploy.** You get a `*.vercel.app` URL instantly; add a custom domain in
+   the project settings if you have one.
+
+After this, every `git push` to `main` auto-deploys. (CLI alternative: `npm i -g
+vercel` then `vercel` from the repo root.)
+
+### GitHub Pages (free alternative)
+
+Pages can only serve from `/` or `/docs`, not `/site`. Easiest path: move
+`index.html` to a `/docs` folder, then **Settings → Pages → Deploy from branch
+`main`, folder `/docs`**. Site goes live at `https://<user>.github.io/fde-for-good/`.
 
 ## Connecting the contact forms
 
