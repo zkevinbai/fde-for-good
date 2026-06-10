@@ -1,10 +1,10 @@
 # Data & privacy
 
-We open-source our **code**. We do **not** open-source charities' data — especially anything about the vulnerable people they serve. This is the line that lets us be open by default without putting anyone at risk.
+We open-source our **code**. We do **not** open-source our partners' data — not a charity's beneficiaries, not a business's customers, not anyone's. This is the line that lets us be open by default without putting anyone at risk.
 
 ## Hard rules
 
-- **Never commit real data.** No beneficiary records, donor lists, addresses, health info, or anything personally identifying. Use synthetic / sample data in the repo.
+- **Never commit real data.** No beneficiary records, customer or donor lists, addresses, health info, payment details, or anything personally identifying. Use synthetic / sample data in the repo.
 - **Never commit secrets.** API keys, passwords, tokens, `.env` files, private keys — none of it. The [`.gitignore`](../.gitignore) blocks the common cases, but you are the last line of defense.
 - **Sample data only in fixtures.** If a project needs example data to run or demo, generate fake data that looks real but isn't.
 - **Credentials belong to the org.** Deploys, databases, and accounts are created in the organization's ownership, or handed to them at the end. We don't hold the keys.

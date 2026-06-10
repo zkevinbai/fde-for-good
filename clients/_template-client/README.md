@@ -2,7 +2,9 @@
 
 # <Client name>
 
-**Mission:** <one line on what this organization does and who it serves>
+**What they do:** <one line on what this organization or business does and who it serves>
+
+**Type:** <mission-driven org | small business | community group | social enterprise>
 
 **Website:** <url, if any>
 

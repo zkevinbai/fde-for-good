@@ -1,0 +1,70 @@
+name: Request help
+description: Ask a volunteer engineer to help your mission-driven organization or small business.
+title: "[Request] <your organization>"
+labels: ["help-request", "needs-scoping"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reaching out! You don't need to know the technical solution — just tell us what's painful today. A volunteer will follow up to scope it with you. (Not sure if you're a fit? See [who we help](https://github.com/zkevinbai/fde-for-good/blob/main/docs/who-we-help.md).)
+  - type: input
+    id: org
+    attributes:
+      label: Organization
+      description: Your charity, group, or business name.
+    validations:
+      required: true
+  - type: dropdown
+    id: type
+    attributes:
+      label: What kind of organization are you?
+      options:
+        - Charity / nonprofit
+        - Community group / mutual aid
+        - Small local business
+        - Social enterprise
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: about
+    attributes:
+      label: What do you do?
+      description: What's your mission or your business, and who do you serve?
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: What's slow, manual, painful, or impossible today? In your own words.
+    validations:
+      required: true
+  - type: dropdown
+    id: affordability
+    attributes:
+      label: Could you pay for this elsewhere?
+      description: Honest answers help us prioritize fairly — we focus on those who can't.
+      options:
+        - "No — hiring a developer/agency is out of reach"
+        - "Maybe a little, but not market rate"
+        - "Not sure"
+    validations:
+      required: true
+  - type: input
+    id: contact
+    attributes:
+      label: Point of contact
+      description: Who would we work with? (name + how to reach you — an email is fine)
+    validations:
+      required: true
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: Timeline
+      options:
+        - No rush
+        - Would help within a few months
+        - Fairly urgent
+    validations:
+      required: false

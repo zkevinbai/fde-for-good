@@ -18,7 +18,7 @@ Examples of unacceptable behavior:
 - Harassment of any kind, public or private
 - Trolling, insulting comments, and personal or political attacks
 - Publishing others' private information without permission
-- Misusing access to a charity's data or systems
+- Misusing access to a partner's data or systems
 
 ## Responsible use of access
 

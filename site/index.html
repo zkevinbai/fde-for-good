@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FDE for Good — pro bono engineering for charities</title>
-  <meta name="description" content="Volunteer forward-deployed engineers build software for charities and mission-driven organizations, for free, and open-source the work." />
+  <title>FDE for Good — pro bono engineering for good organizations</title>
+  <meta name="description" content="Volunteer forward-deployed engineers build software for mission-driven organizations and small businesses, for free, and open-source the work." />
   <meta property="og:title" content="FDE for Good" />
-  <meta property="og:description" content="Pro bono forward-deployed engineering for charities. Free. Open source. Embedded." />
+  <meta property="og:description" content="Pro bono forward-deployed engineering for mission-driven organizations and small businesses. Free. Open source. Embedded." />
   <meta property="og:type" content="website" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -37,7 +37,7 @@
       <a href="#" class="font-extrabold text-lg tracking-tight">FDE<span class="gradient-text">·</span>for Good</a>
       <div class="hidden sm:flex items-center gap-8 text-sm font-medium text-slate-600">
         <a href="#how" class="hover:text-slate-900 transition">How it works</a>
-        <a href="#charities" class="hover:text-slate-900 transition">Charities</a>
+        <a href="#partners" class="hover:text-slate-900 transition">Get help</a>
         <a href="#volunteers" class="hover:text-slate-900 transition">Volunteers</a>
         <a id="nav-repo" href="#" target="_blank" rel="noopener" class="px-4 py-2 rounded-lg bg-slate-900 text-white hover:bg-slate-700 transition">GitHub</a>
       </div>
@@ -53,10 +53,10 @@
       Engineering for the <span class="gradient-text">good guys</span>.
     </h1>
     <p class="mt-6 text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto">
-      Volunteer forward-deployed engineers embed with charities and mission-driven organizations, build the software they need — for free — and open-source all of it.
+      Volunteer forward-deployed engineers embed with mission-driven organizations and small local businesses, build the software they need — for free — and open-source all of it.
     </p>
     <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="#charities" class="px-6 py-3 rounded-xl bg-emerald-600 text-white font-semibold hover:bg-emerald-700 transition shadow-sm">I run a charity</a>
+      <a href="#partners" class="px-6 py-3 rounded-xl bg-emerald-600 text-white font-semibold hover:bg-emerald-700 transition shadow-sm">I need help</a>
       <a href="#volunteers" class="px-6 py-3 rounded-xl bg-white border border-slate-300 text-slate-900 font-semibold hover:border-slate-400 transition">I want to volunteer</a>
     </div>
   </section>
@@ -95,7 +95,7 @@
         <div class="text-center">
           <div class="w-12 h-12 mx-auto rounded-full bg-emerald-100 text-emerald-700 font-bold grid place-items-center mb-4">1</div>
           <h3 class="font-semibold mb-1">Intake</h3>
-          <p class="text-sm text-slate-600">A charity tells us what's painful today.</p>
+          <p class="text-sm text-slate-600">An organization tells us what's painful today.</p>
         </div>
         <div class="text-center">
           <div class="w-12 h-12 mx-auto rounded-full bg-emerald-100 text-emerald-700 font-bold grid place-items-center mb-4">2</div>
@@ -123,15 +123,15 @@
 
   <!-- Two audiences -->
   <section class="max-w-6xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-8">
-    <div id="charities" class="bg-gradient-to-br from-emerald-600 to-teal-600 text-white rounded-3xl p-10">
-      <h2 class="text-2xl font-extrabold mb-3">For charities</h2>
-      <p class="text-emerald-50 mb-6">You have a technical problem and no budget. That's exactly what we're here for — automations, dashboards, data clean-ups, small tools, websites.</p>
+    <div id="partners" class="bg-gradient-to-br from-emerald-600 to-teal-600 text-white rounded-3xl p-10">
+      <h2 class="text-2xl font-extrabold mb-3">Get help</h2>
+      <p class="text-emerald-50 mb-6">For mission-driven organizations and small local businesses with a technical problem and no budget — a first website, a booking system, automations, dashboards, data clean-ups. For-profit is fine if you're small and can't afford an engineer.</p>
       <ul class="space-y-2 text-sm text-emerald-50 mb-8">
         <li>✓ Volunteer engineers, completely free</li>
         <li>✓ We learn your real workflow first</li>
         <li>✓ Your data stays private; the code stays open</li>
       </ul>
-      <a id="charity-cta" href="#" target="_blank" rel="noopener" class="inline-block px-6 py-3 rounded-xl bg-white text-emerald-700 font-semibold hover:bg-emerald-50 transition">Request help →</a>
+      <a id="partner-cta" href="#" target="_blank" rel="noopener" class="inline-block px-6 py-3 rounded-xl bg-white text-emerald-700 font-semibold hover:bg-emerald-50 transition">Request help →</a>
     </div>
     <div id="volunteers" class="bg-slate-900 text-white rounded-3xl p-10">
       <h2 class="text-2xl font-extrabold mb-3">For volunteers</h2>
@@ -158,7 +158,7 @@
     for (const id of ["nav-repo", "footer-repo"]) {
       document.getElementById(id).href = REPO_URL;
     }
-    document.getElementById("charity-cta").href = REPO_URL + "/issues/new?template=charity-request.yml";
+    document.getElementById("partner-cta").href = REPO_URL + "/issues/new?template=help-request.yml";
     document.getElementById("volunteer-cta").href = REPO_URL + "/issues/new?template=volunteer-signup.yml";
   </script>
 </body>

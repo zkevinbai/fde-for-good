@@ -2,7 +2,7 @@
 
 Thanks for wanting to help. There are two kinds of contribution here:
 
-1. **FDE work** — building software for a charity. Start with [docs/for-volunteers.md](docs/for-volunteers.md).
+1. **FDE work** — building software for a partner organization. Start with [docs/for-volunteers.md](docs/for-volunteers.md).
 2. **The repo itself** — improving docs, the landing page, templates, tooling. That's this file.
 
 ## Ground rules

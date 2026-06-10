@@ -4,20 +4,25 @@ The full lifecycle of an FDE for Good engagement, from first contact to handover
 
 ## 1. Intake
 
-A charity or nonprofit reaches out with a problem. We don't ask them to spec out a solution — most won't know how. We ask what's slow, painful, manual, or impossible today.
+An organization reaches out with a problem — a mission-driven organization (charity, community group, social enterprise) or a small local business with no website and no engineer. We don't ask them to spec out a solution; most won't know how. We ask what's slow, painful, manual, or impossible today.
+
+First we check it's a fit — see [who we help](who-we-help.md). The short version: we help people locked out of software because they can't afford it.
 
 Good fits:
 
+- A first website or online presence
+- A booking, ordering, or enquiry system
 - Manual work that could be automated (spreadsheets copied by hand, reports compiled monthly)
 - Data that's trapped or messy and needs to be usable
-- A small internal tool, dashboard, or website
+- A small internal tool or dashboard
 - Integrating systems that don't talk to each other
 
 Out of scope (for now):
 
+- Organizations that can comfortably afford to pay for this
 - Anything requiring ongoing paid infrastructure the org can't sustain
 - Work that needs a long-term on-call commitment we can't guarantee
-- Anything that isn't clearly in service of a charitable / public-good mission
+- Anything that primarily enriches owners/investors rather than serving people or community
 
 ## 2. Scoping
 

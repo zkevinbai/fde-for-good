@@ -4,14 +4,16 @@ You want to use your skills for something good. Here's how to plug in.
 
 ## What an FDE does here
 
-A forward-deployed engineer embeds with an organization, learns their real workflow, and ships software that fits. You're not just taking a ticket — you're figuring out what's actually worth building, then building it.
+A forward-deployed engineer embeds with an organization — a mission-driven organization or a small local business — learns their real workflow, and ships software that fits. You're not just taking a ticket; you're figuring out what's actually worth building, then building it.
 
-You don't need to be senior, and you don't need a specific stack. Curiosity, follow-through, and the willingness to talk to non-technical people matter more.
+You don't need to be senior, and you don't need a specific stack. Curiosity, follow-through, and the willingness to talk to non-technical people matter more. (Sometimes the most valuable thing you can build is someone's very first website.)
+
+Before taking something on, it's worth a glance at [who we help](who-we-help.md) so you know the kind of work that's in scope.
 
 ## Finding work
 
 1. Browse open engagements in [`clients/`](../clients/) and the issue tracker.
-2. Look for projects marked `proposed` or `scoping`, or claim a fresh `Charity request` issue.
+2. Look for projects marked `proposed` or `scoping`, or claim a fresh `Request help` issue.
 3. Comment to claim it so we don't double up.
 
 ## Starting a new engagement
