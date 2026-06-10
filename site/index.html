@@ -310,7 +310,6 @@
 
         <!-- HELP FORM -->
         <form id="form-help" data-success="We've got your request and will follow up to scope it with you." class="modal-form p-8 sm:p-10" novalidate>
-          <input type="hidden" name="_subject" value="New help request — FDE for Good" />
           <input type="hidden" name="form" value="help-request" />
           <h2 class="font-display font-bold text-2xl">Tell us what you need</h2>
           <p class="text-sm text-slate-500 mt-1.5 mb-6">No tech knowledge needed — just describe what's painful today. We'll follow up to scope it with you.</p>
@@ -343,7 +342,6 @@
 
         <!-- VOLUNTEER FORM -->
         <form id="form-volunteer" data-success="Thanks for offering your time — we'll be in touch about a good first engagement." class="modal-form p-8 sm:p-10 hidden" novalidate>
-          <input type="hidden" name="_subject" value="New volunteer sign-up — FDE for Good" />
           <input type="hidden" name="form" value="volunteer-signup" />
           <h2 class="font-display font-bold text-2xl">Join as a volunteer</h2>
           <p class="text-sm text-slate-500 mt-1.5 mb-6">Any stack, any seniority. Tell us a bit about you and we'll match you to a good first engagement.</p>
@@ -375,10 +373,10 @@
 
   <script>
     // ── Form delivery ──────────────────────────────────────────────
-    // STUB: paste your form endpoint here to start receiving messages.
-    // Easiest option: create a free form at https://formspree.io and paste
-    // its endpoint below (looks like https://formspree.io/f/abcdwxyz).
-    const FORMSPREE_ENDPOINT = "https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID";
+    // Submissions are written to a Google Sheet via a Google Apps Script
+    // web app. Paste its deployment URL (ends in /exec) below.
+    // Full setup walkthrough: forms/SETUP.md
+    const SHEET_ENDPOINT = "https://script.google.com/macros/s/REPLACE_WITH_YOUR_DEPLOYMENT_ID/exec";
 
     // Wire GitHub source links from the single REPO_URL constant.
     for (const id of ["nav-repo", "footer-repo"]) document.getElementById(id).href = REPO_URL;
@@ -415,21 +413,28 @@
         const original = btn.textContent;
 
         // Endpoint not configured yet — tell the site owner, don't pretend to send.
-        if (FORMSPREE_ENDPOINT.includes("REPLACE_WITH_YOUR_FORM_ID")) {
+        if (SHEET_ENDPOINT.includes("REPLACE_WITH_YOUR_DEPLOYMENT_ID")) {
           let note = form.querySelector(".stub-note");
           if (!note) {
             note = document.createElement("p");
             note.className = "stub-note text-sm text-amber-700 bg-amber-50 ring-1 ring-amber-200 rounded-lg px-3 py-2.5 mt-3 text-center";
             btn.after(note);
           }
-          note.textContent = "This form isn't connected yet. Add a form endpoint (FORMSPREE_ENDPOINT in site/index.html) to start receiving messages.";
+          note.textContent = "This form isn't connected yet. Add your Google Sheet endpoint (SHEET_ENDPOINT in site/index.html) — see forms/SETUP.md.";
           return;
         }
 
         btn.disabled = true; btn.textContent = "Sending…";
         try {
-          const res = await fetch(FORMSPREE_ENDPOINT, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } });
-          if (!res.ok) throw new Error();
+          // Apps Script doesn't return CORS headers, so we send "no-cors" and
+          // treat a resolved request as success (the row is written server-side
+          // before the response). URLSearchParams keeps it a simple, no-preflight
+          // request that Apps Script reads via e.parameter.
+          await fetch(SHEET_ENDPOINT, {
+            method: "POST",
+            mode: "no-cors",
+            body: new URLSearchParams(new FormData(form)),
+          });
           form.reset();
           document.getElementById("success-msg").textContent = form.dataset.success;
           Object.values(forms).forEach((f) => f.classList.add("hidden"));
