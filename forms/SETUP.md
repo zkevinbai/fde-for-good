@@ -54,6 +54,23 @@ If you change `Code.gs` (e.g. to turn on email), in Apps Script do
 **Deploy ▸ Manage deployments ▸ ✏️ Edit ▸ Version: New version ▸ Deploy**.
 The URL stays the same, so you don't need to touch the site again.
 
+## Access & handover (so it's the team's, not one person's)
+
+The data lives in Google's cloud, not on anyone's laptop — so handing it to
+volunteers is just a matter of sharing:
+
+- **Share the Sheet.** In the Sheet: **Share** → add volunteers' Google
+  accounts as **Editor** (to manage submissions) or **Viewer** (read-only).
+- **Share the script.** The Apps Script project shares automatically with anyone
+  who can edit the Sheet, so editors can also update `Code.gs` and redeploy.
+- **Owning account.** Whoever's Google account owns the Sheet owns the data. If
+  you later create a dedicated org account, move the Sheet to it (**Share** →
+  transfer ownership) — the `/exec` URL keeps working.
+
+> Tip: avoid being signed into multiple Google accounts while deploying — Apps
+> Script misbehaves on secondary accounts (`authuser=1`, `2`…). Use a window
+> signed into only the owning account (Incognito works).
+
 ## Notes
 
 - **Columns** are added automatically with friendly headers. Help requests and
