@@ -108,12 +108,12 @@
       </p>
 
       <div class="reveal mt-10 flex flex-col sm:flex-row gap-3.5 justify-center">
-        <a href="#get-help" class="group px-6 py-3.5 rounded-xl bg-emerald-600 text-white font-semibold hover:bg-emerald-700 transition shadow-lg shadow-emerald-600/20 hover:shadow-emerald-600/30">
+        <button type="button" data-open="help" class="group px-6 py-3.5 rounded-xl bg-emerald-600 text-white font-semibold hover:bg-emerald-700 transition shadow-lg shadow-emerald-600/20 hover:shadow-emerald-600/30">
           I need help <span class="inline-block transition group-hover:translate-x-0.5">→</span>
-        </a>
-        <a href="#get-help" class="px-6 py-3.5 rounded-xl bg-white ring-1 ring-slate-300 text-ink font-semibold hover:ring-slate-400 hover:bg-slate-50 transition">
+        </button>
+        <button type="button" data-open="volunteer" class="px-6 py-3.5 rounded-xl bg-white ring-1 ring-slate-300 text-ink font-semibold hover:ring-slate-400 hover:bg-slate-50 transition">
           I want to volunteer
-        </a>
+        </button>
       </div>
 
       <p class="reveal mt-6 text-sm text-slate-500">No invoices. No strings. Every line of code public.</p>
@@ -267,16 +267,16 @@
     <div class="reveal bg-gradient-to-br from-emerald-600 to-teal-600 text-white rounded-3xl p-10 shadow-xl shadow-emerald-600/10">
       <h2 class="font-display font-bold text-2xl mb-3">Need help?</h2>
       <p class="text-emerald-50 mb-6 leading-relaxed">For mission-driven organizations and small businesses with a real problem and no budget. Tell us what's painful — you don't need to know the solution.</p>
-      <a id="partner-cta" href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-emerald-700 font-semibold hover:bg-emerald-50 transition">
+      <button type="button" data-open="help" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-emerald-700 font-semibold hover:bg-emerald-50 transition">
         Request help →
-      </a>
+      </button>
     </div>
     <div class="reveal bg-ink text-white rounded-3xl p-10">
       <h2 class="font-display font-bold text-2xl mb-3">Want to volunteer?</h2>
       <p class="text-slate-300 mb-6 leading-relaxed">Use your engineering skills for something good. Any stack, any seniority. Pick an engagement that fits your time and ship something real.</p>
-      <a id="volunteer-cta" href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-ink font-semibold hover:bg-slate-100 transition">
+      <button type="button" data-open="volunteer" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-ink font-semibold hover:bg-slate-100 transition">
         Sign up →
-      </a>
+      </button>
     </div>
   </section>
 
@@ -292,17 +292,166 @@
     </div>
   </footer>
 
-  <script>
-    // Wire repo links from the single REPO_URL constant.
-    for (const id of ["nav-repo", "footer-repo"]) document.getElementById(id).href = REPO_URL;
-    document.getElementById("partner-cta").href = REPO_URL + "/issues/new?template=help-request.yml";
-    document.getElementById("volunteer-cta").href = REPO_URL + "/issues/new?template=volunteer-signup.yml";
+  <!-- ===================== MODAL FORMS ===================== -->
+  <style>
+    .fld-label { display:block; font-size:.825rem; font-weight:600; color:#334155; margin-bottom:.35rem; }
+    .fld { width:100%; border-radius:.6rem; background:#fff; border:1px solid #cbd5e1; padding:.6rem .8rem; font-size:.925rem; color:#0a0f1a; transition:box-shadow .15s, border-color .15s; }
+    .fld::placeholder { color:#94a3b8; }
+    .fld:focus { outline:none; border-color:#10b981; box-shadow:0 0 0 3px rgba(16,185,129,.18); }
+    #modal.open { display:block; }
+    #modal .panel { animation: pop .25s cubic-bezier(.2,.8,.2,1); }
+    @keyframes pop { from { opacity:0; transform:translateY(12px) scale(.98) } to { opacity:1; transform:none } }
+  </style>
+  <div id="modal" class="fixed inset-0 z-[100] hidden">
+    <div data-close class="absolute inset-0 bg-ink/50 backdrop-blur-sm"></div>
+    <div class="relative min-h-full flex items-center justify-center p-4">
+      <div class="panel relative w-full max-w-lg bg-white rounded-3xl shadow-2xl ring-1 ring-slate-200 max-h-[90vh] overflow-y-auto">
+        <button data-close class="sticky top-0 float-right -mb-12 mr-4 mt-4 z-10 w-9 h-9 grid place-items-center rounded-full bg-white/70 backdrop-blur text-slate-400 hover:bg-slate-100 hover:text-ink transition" aria-label="Close">✕</button>
 
-    // Scroll-reveal animations.
+        <!-- HELP FORM -->
+        <form id="form-help" data-success="We've got your request and will follow up to scope it with you." class="modal-form p-8 sm:p-10" novalidate>
+          <input type="hidden" name="_subject" value="New help request — FDE for Good" />
+          <input type="hidden" name="form" value="help-request" />
+          <h2 class="font-display font-bold text-2xl">Tell us what you need</h2>
+          <p class="text-sm text-slate-500 mt-1.5 mb-6">No tech knowledge needed — just describe what's painful today. We'll follow up to scope it with you.</p>
+          <div class="space-y-4">
+            <div><label class="fld-label">Organization name</label><input name="organization" required class="fld" placeholder="e.g. Riverside Community Café" /></div>
+            <div><label class="fld-label">What kind of organization?</label>
+              <select name="type" class="fld">
+                <option>Charity / nonprofit</option>
+                <option>Community group / mutual aid</option>
+                <option>Small local business</option>
+                <option>Social enterprise</option>
+                <option>Other</option>
+              </select></div>
+            <div><label class="fld-label">What do you do?</label><textarea name="about" rows="2" class="fld" placeholder="Your mission or business, and who you serve"></textarea></div>
+            <div><label class="fld-label">What's the problem?</label><textarea name="problem" rows="3" required class="fld" placeholder="What's slow, manual, or impossible today?"></textarea></div>
+            <div><label class="fld-label">Could you pay for this elsewhere?</label>
+              <select name="affordability" class="fld">
+                <option>No — hiring a developer is out of reach</option>
+                <option>Maybe a little, but not market rate</option>
+                <option>Not sure</option>
+              </select></div>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div><label class="fld-label">Your name</label><input name="name" required class="fld" /></div>
+              <div><label class="fld-label">Email</label><input type="email" name="email" required class="fld" placeholder="you@example.com" /></div>
+            </div>
+          </div>
+          <button type="submit" class="mt-6 w-full px-6 py-3 rounded-xl bg-emerald-600 text-white font-semibold hover:bg-emerald-700 transition">Send request</button>
+          <p class="text-xs text-slate-400 mt-3 text-center">Free, no obligation. Your details stay private.</p>
+        </form>
+
+        <!-- VOLUNTEER FORM -->
+        <form id="form-volunteer" data-success="Thanks for offering your time — we'll be in touch about a good first engagement." class="modal-form p-8 sm:p-10 hidden" novalidate>
+          <input type="hidden" name="_subject" value="New volunteer sign-up — FDE for Good" />
+          <input type="hidden" name="form" value="volunteer-signup" />
+          <h2 class="font-display font-bold text-2xl">Join as a volunteer</h2>
+          <p class="text-sm text-slate-500 mt-1.5 mb-6">Any stack, any seniority. Tell us a bit about you and we'll match you to a good first engagement.</p>
+          <div class="space-y-4">
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div><label class="fld-label">Name</label><input name="name" required class="fld" /></div>
+              <div><label class="fld-label">Email</label><input type="email" name="email" required class="fld" placeholder="you@example.com" /></div>
+            </div>
+            <div><label class="fld-label">What are you good at?</label><textarea name="skills" rows="3" required class="fld" placeholder="Languages, frameworks, data, design, product — whatever you bring"></textarea></div>
+            <div><label class="fld-label">Rough availability</label><input name="availability" class="fld" placeholder="e.g. a few hours a week, weekends" /></div>
+            <div><label class="fld-label">Causes you care about <span class="font-normal text-slate-400">(optional)</span></label><textarea name="interests" rows="2" class="fld" placeholder="Helps us match you to the right organization"></textarea></div>
+          </div>
+          <button type="submit" class="mt-6 w-full px-6 py-3 rounded-xl bg-ink text-white font-semibold hover:bg-slate-700 transition">Sign up</button>
+          <p class="text-xs text-slate-400 mt-3 text-center">We'll only use your details to match you with engagements.</p>
+        </form>
+
+        <!-- SUCCESS -->
+        <div id="form-success" class="hidden p-10 sm:p-12 text-center">
+          <div class="w-14 h-14 mx-auto rounded-full bg-emerald-100 text-emerald-600 grid place-items-center mb-4">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <h2 class="font-display font-bold text-2xl">Thank you!</h2>
+          <p class="text-slate-500 mt-2" id="success-msg"></p>
+          <button data-close class="mt-7 px-6 py-3 rounded-xl bg-ink text-white font-semibold hover:bg-slate-700 transition">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ── Form delivery ──────────────────────────────────────────────
+    // STUB: paste your form endpoint here to start receiving messages.
+    // Easiest option: create a free form at https://formspree.io and paste
+    // its endpoint below (looks like https://formspree.io/f/abcdwxyz).
+    const FORMSPREE_ENDPOINT = "https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID";
+
+    // Wire GitHub source links from the single REPO_URL constant.
+    for (const id of ["nav-repo", "footer-repo"]) document.getElementById(id).href = REPO_URL;
+
+    // ── Modal open/close ───────────────────────────────────────────
+    const modal = document.getElementById("modal");
+    const forms = { help: document.getElementById("form-help"), volunteer: document.getElementById("form-volunteer") };
+    const successView = document.getElementById("form-success");
+
+    function openModal(which) {
+      successView.classList.add("hidden");
+      Object.entries(forms).forEach(([k, f]) => f.classList.toggle("hidden", k !== which));
+      modal.classList.remove("hidden");
+      modal.classList.add("open");
+      document.body.style.overflow = "hidden";
+      const first = forms[which].querySelector("input, textarea, select");
+      if (first) setTimeout(() => first.focus(), 50);
+    }
+    function closeModal() {
+      modal.classList.add("hidden");
+      modal.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+    document.querySelectorAll("[data-open]").forEach((b) => b.addEventListener("click", () => openModal(b.dataset.open)));
+    document.querySelectorAll("[data-close]").forEach((b) => b.addEventListener("click", closeModal));
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !modal.classList.contains("hidden")) closeModal(); });
+
+    // ── Submission ─────────────────────────────────────────────────
+    Object.values(forms).forEach((form) => {
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        if (!form.checkValidity()) { form.reportValidity(); return; }
+        const btn = form.querySelector("button[type=submit]");
+        const original = btn.textContent;
+
+        // Endpoint not configured yet — tell the site owner, don't pretend to send.
+        if (FORMSPREE_ENDPOINT.includes("REPLACE_WITH_YOUR_FORM_ID")) {
+          let note = form.querySelector(".stub-note");
+          if (!note) {
+            note = document.createElement("p");
+            note.className = "stub-note text-sm text-amber-700 bg-amber-50 ring-1 ring-amber-200 rounded-lg px-3 py-2.5 mt-3 text-center";
+            btn.after(note);
+          }
+          note.textContent = "This form isn't connected yet. Add a form endpoint (FORMSPREE_ENDPOINT in site/index.html) to start receiving messages.";
+          return;
+        }
+
+        btn.disabled = true; btn.textContent = "Sending…";
+        try {
+          const res = await fetch(FORMSPREE_ENDPOINT, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } });
+          if (!res.ok) throw new Error();
+          form.reset();
+          document.getElementById("success-msg").textContent = form.dataset.success;
+          Object.values(forms).forEach((f) => f.classList.add("hidden"));
+          successView.classList.remove("hidden");
+        } catch {
+          btn.disabled = false; btn.textContent = original;
+          let err = form.querySelector(".err-note");
+          if (!err) {
+            err = document.createElement("p");
+            err.className = "err-note text-sm text-red-600 bg-red-50 ring-1 ring-red-200 rounded-lg px-3 py-2.5 mt-3 text-center";
+            btn.after(err);
+          }
+          err.textContent = "Something went wrong sending that. Please try again in a moment.";
+        }
+      });
+    });
+
+    // ── Scroll-reveal animations ───────────────────────────────────
     const io = new IntersectionObserver((entries) => {
-      entries.forEach((e, i) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
     }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach((el, i) => { el.style.transitionDelay = (i % 5 * 60) + 'ms'; io.observe(el); });
+    document.querySelectorAll(".reveal").forEach((el, i) => { el.style.transitionDelay = (i % 5 * 60) + "ms"; io.observe(el); });
   </script>
 </body>
 </html>

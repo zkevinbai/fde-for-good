@@ -36,7 +36,7 @@ Nothing in fees. Two things to know:
 
 ## How to start
 
-Open a request as a GitHub issue using the **"Request help"** template, or email a maintainer if that's easier. Tell us:
+The easiest way is the **Request help** form on our website — no GitHub account or tech knowledge needed. (If you'd rather, you can open a GitHub issue with the "Request help" template instead.) Either way, tell us:
 
 - Who you are and what you do
 - The problem, in your own words — what's painful today
