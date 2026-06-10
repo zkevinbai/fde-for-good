@@ -298,6 +298,8 @@
     .fld { width:100%; border-radius:.6rem; background:#fff; border:1px solid #cbd5e1; padding:.6rem .8rem; font-size:.925rem; color:#0a0f1a; transition:box-shadow .15s, border-color .15s; }
     .fld::placeholder { color:#94a3b8; }
     .fld:focus { outline:none; border-color:#10b981; box-shadow:0 0 0 3px rgba(16,185,129,.18); }
+    .fld:user-invalid { border-color:#ef4444; }
+    .fld:user-invalid:focus { border-color:#ef4444; box-shadow:0 0 0 3px rgba(239,68,68,.18); }
     #modal.open { display:block; }
     #modal .panel { animation: pop .25s cubic-bezier(.2,.8,.2,1); }
     @keyframes pop { from { opacity:0; transform:translateY(12px) scale(.98) } to { opacity:1; transform:none } }
@@ -322,7 +324,7 @@
             </div>
             <div class="grid sm:grid-cols-2 gap-4">
               <div><label class="fld-label">Email</label><input type="email" name="email" required class="fld" placeholder="you@example.com" /></div>
-              <div><label class="fld-label">Phone <span class="font-normal text-slate-400">(optional)</span></label><input type="tel" name="phone" class="fld" /></div>
+              <div><label class="fld-label">Phone <span class="font-normal text-slate-400">(optional)</span></label><input type="tel" name="phone" class="fld" pattern="[\d\s+\(\).\-]{7,}" title="Enter a valid phone number (digits, spaces, + - ( ) allowed)" /></div>
             </div>
           </div>
 
@@ -380,12 +382,12 @@
               <div><label class="fld-label">Email</label><input type="email" name="email" required class="fld" placeholder="you@example.com" /></div>
             </div>
             <div class="grid sm:grid-cols-2 gap-4">
-              <div><label class="fld-label">Company / employer <span class="font-normal text-slate-400">(optional)</span></label><input name="company" class="fld" placeholder="Where you work or study" /></div>
-              <div><label class="fld-label">Availability</label><input name="availability" class="fld" placeholder="e.g. a few hours a week" /></div>
+              <div><label class="fld-label">Company / employer</label><input name="company" required class="fld" placeholder="Where you work or study" /></div>
+              <div><label class="fld-label">Availability</label><input name="availability" required class="fld" placeholder="e.g. a few hours a week" /></div>
             </div>
             <div class="grid sm:grid-cols-2 gap-4">
-              <div><label class="fld-label">LinkedIn <span class="font-normal text-slate-400">(optional)</span></label><input name="linkedin" class="fld" placeholder="linkedin.com/in/…" /></div>
-              <div><label class="fld-label">GitHub <span class="font-normal text-slate-400">(optional)</span></label><input name="github" class="fld" placeholder="github.com/…" /></div>
+              <div><label class="fld-label">LinkedIn</label><input name="linkedin" required class="fld" placeholder="linkedin.com/in/…" pattern="(https?://)?(www\.)?linkedin\.com/.+" title="Enter your LinkedIn profile URL, e.g. linkedin.com/in/yourname" /></div>
+              <div><label class="fld-label">GitHub</label><input name="github" required class="fld" placeholder="github.com/…" pattern="(https?://)?(www\.)?github\.com/.+" title="Enter your GitHub profile URL, e.g. github.com/yourname" /></div>
             </div>
             <div><label class="fld-label">What are you good at?</label><textarea name="skills" rows="3" required class="fld" placeholder="Languages, frameworks, data, design, product — whatever you bring"></textarea></div>
             <div><label class="fld-label">Causes you care about <span class="font-normal text-slate-400">(optional)</span></label><textarea name="interests" rows="2" class="fld" placeholder="Helps us match you to the right organization"></textarea></div>
