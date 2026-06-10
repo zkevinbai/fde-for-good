@@ -343,7 +343,7 @@
           <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mt-7 mb-3">What you need</p>
           <div class="space-y-4">
             <div><label class="fld-label">What's the problem?</label><textarea name="problem" rows="3" required class="fld" placeholder="What's slow, manual, or impossible today?"></textarea></div>
-            <div><label class="fld-label">What would success look like? <span class="font-normal text-slate-400">(optional)</span></label><textarea name="goal" rows="2" class="fld" placeholder="How would you know this worked?"></textarea></div>
+            <div><label class="fld-label">What would success look like?</label><textarea name="goal" rows="2" required class="fld" placeholder="How would you know this worked?"></textarea></div>
             <div class="grid sm:grid-cols-2 gap-4">
               <div><label class="fld-label">Timeline</label>
                 <select name="timeline" class="fld">
@@ -351,11 +351,12 @@
                   <option>Within a few months</option>
                   <option>Fairly urgent</option>
                 </select></div>
-              <div><label class="fld-label">Could you pay elsewhere?</label>
-                <select name="affordability" class="fld">
-                  <option>No — hiring a developer is out of reach</option>
+              <div><label class="fld-label">Could you pay someone to do this?</label>
+                <select name="affordability" required class="fld">
+                  <option value="" disabled selected>Select one…</option>
+                  <option>No — it's out of reach</option>
                   <option>Maybe a little, but not market rate</option>
-                  <option>Not sure</option>
+                  <option>Yes — we could pay for this</option>
                 </select></div>
             </div>
             <div><label class="fld-label">Anything else? <span class="font-normal text-slate-400">(optional)</span></label><textarea name="notes" rows="2" class="fld" placeholder="Constraints, tools you already use, how you heard about us…"></textarea></div>

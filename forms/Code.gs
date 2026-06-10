@@ -78,7 +78,7 @@ function prettyHeader(key) {
     problem: "Problem",
     goal: "Success looks like",
     timeline: "Timeline",
-    affordability: "Can pay elsewhere?",
+    affordability: "Could pay someone?",
     notes: "Anything else",
     company: "Company / employer",
     linkedin: "LinkedIn",

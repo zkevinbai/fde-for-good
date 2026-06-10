@@ -82,10 +82,10 @@ body:
   - type: textarea
     id: goal
     attributes:
-      label: What would success look like? (optional)
+      label: What would success look like?
       description: How would you know this worked?
     validations:
-      required: false
+      required: true
   - type: dropdown
     id: urgency
     attributes:
@@ -99,12 +99,12 @@ body:
   - type: dropdown
     id: affordability
     attributes:
-      label: Could you pay for this elsewhere?
-      description: Honest answers help us prioritize fairly — we focus on those who can't.
+      label: Could you pay someone to do this?
+      description: Honest answers help us prioritize fairly — we focus where our help goes furthest.
       options:
-        - "No — hiring a developer/agency is out of reach"
+        - "No — it's out of reach"
         - "Maybe a little, but not market rate"
-        - "Not sure"
+        - "Yes — we could pay for this"
     validations:
       required: true
   - type: textarea
