@@ -13,6 +13,12 @@
  *        - Who has access: Anyone
  *   4. Copy the Web app URL (ends in /exec) into SHEET_ENDPOINT in
  *      site/index.html.
+ *
+ * Security: this script is restricted to THIS spreadsheet only — the
+ * accompanying appsscript.json requests the narrow
+ * "spreadsheets.currentonly" scope, not access to all your sheets. "Anyone"
+ * web-app access only lets people SUBMIT the form (call doPost); there is no
+ * endpoint that reads or exposes data.
  */
 
 // Optional: get an email on every submission. Leave "" to disable.
@@ -21,6 +27,11 @@ const NOTIFY_EMAIL = "";
 function doPost(e) {
   try {
     const data = (e && e.parameter) ? e.parameter : {};
+
+    // Spam honeypot: a hidden field real users never fill, but bots do.
+    // If it's filled, pretend success and write nothing.
+    if (data.hp_url) return json({ ok: true });
+
     const formType = data.form || "unknown";
 
     const isVolunteer = formType === "volunteer-signup";

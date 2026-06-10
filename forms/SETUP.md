@@ -54,6 +54,41 @@ If you change `Code.gs` (e.g. to turn on email), in Apps Script do
 **Deploy ▸ Manage deployments ▸ ✏️ Edit ▸ Version: New version ▸ Deploy**.
 The URL stays the same, so you don't need to touch the site again.
 
+## Security — is "Anyone" access safe?
+
+Yes. Two separate things that are easy to confuse:
+
+- **"Who has access: Anyone"** only lets people **call the URL** — i.e. submit
+  the form. The script's only public action is "append a row to this sheet."
+  There is no endpoint that reads rows, lists data, or touches other files, so
+  callers **cannot read your data or any other spreadsheet**. This setting is
+  required for a public form. The `/exec` URL is meant to be public (it's in the
+  site's source); that's fine because it can only write a row.
+- **The consent screen** that warns about "all your spreadsheets" is about what
+  *the script itself* is allowed to do — its OAuth scope — not what web callers
+  can do.
+
+**Lock the script to this one sheet (recommended).** Restrict its scope so it
+can never touch your other spreadsheets:
+
+1. In the Apps Script editor: **Project Settings** (⚙ on the left) → tick
+   **"Show appsscript.json manifest file in editor."**
+2. Open the `appsscript.json` file that now appears and add an `oauthScopes`
+   entry so it matches [`appsscript.json`](appsscript.json) in this repo:
+   ```json
+   "oauthScopes": ["https://www.googleapis.com/auth/spreadsheets.currentonly"]
+   ```
+   (If you turn on email notifications, also add
+   `"https://www.googleapis.com/auth/script.send_mail"`.)
+3. **Save**, then **Deploy ▸ Manage deployments ▸ ✏️ Edit ▸ Version: New
+   version ▸ Deploy** and re-authorize. The consent screen will now say it only
+   accesses "the specific Google Sheets file you use with this app."
+
+**Spam:** because anyone can post, bots could in theory add junk rows. The form
+includes a hidden honeypot field (`hp_url`) that real users never fill; the
+script silently discards any submission that has it filled. If you ever get
+serious spam, add a CAPTCHA — but the honeypot stops the casual stuff.
+
 ## Access & handover (so it's the team's, not one person's)
 
 The data lives in Google's cloud, not on anyone's laptop — so handing it to
