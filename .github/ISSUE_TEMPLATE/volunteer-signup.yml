@@ -10,9 +10,36 @@ body:
   - type: input
     id: name
     attributes:
-      label: Name / handle
+      label: Name
     validations:
       required: true
+  - type: input
+    id: email
+    attributes:
+      label: Email
+    validations:
+      required: true
+  - type: input
+    id: company
+    attributes:
+      label: Company / employer (optional)
+      description: Where you work or study.
+    validations:
+      required: false
+  - type: input
+    id: linkedin
+    attributes:
+      label: LinkedIn (optional)
+      description: e.g. linkedin.com/in/…
+    validations:
+      required: false
+  - type: input
+    id: github
+    attributes:
+      label: GitHub (optional)
+      description: e.g. github.com/…
+    validations:
+      required: false
   - type: textarea
     id: skills
     attributes:

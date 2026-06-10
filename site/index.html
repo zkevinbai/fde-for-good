@@ -312,30 +312,59 @@
         <form id="form-help" data-success="We've got your request and will follow up to scope it with you." class="modal-form p-8 sm:p-10" novalidate>
           <input type="hidden" name="form" value="help-request" />
           <h2 class="font-display font-bold text-2xl">Tell us what you need</h2>
-          <p class="text-sm text-slate-500 mt-1.5 mb-6">No tech knowledge needed — just describe what's painful today. We'll follow up to scope it with you.</p>
+          <p class="text-sm text-slate-500 mt-1.5 mb-6">No tech knowledge needed — just describe what's painful today. The more you share, the faster we can help.</p>
+
+          <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-3">About you</p>
           <div class="space-y-4">
-            <div><label class="fld-label">Organization name</label><input name="organization" required class="fld" placeholder="e.g. Riverside Community Café" /></div>
-            <div><label class="fld-label">What kind of organization?</label>
-              <select name="type" class="fld">
-                <option>Charity / nonprofit</option>
-                <option>Community group / mutual aid</option>
-                <option>Small local business</option>
-                <option>Social enterprise</option>
-                <option>Other</option>
-              </select></div>
-            <div><label class="fld-label">What do you do?</label><textarea name="about" rows="2" class="fld" placeholder="Your mission or business, and who you serve"></textarea></div>
-            <div><label class="fld-label">What's the problem?</label><textarea name="problem" rows="3" required class="fld" placeholder="What's slow, manual, or impossible today?"></textarea></div>
-            <div><label class="fld-label">Could you pay for this elsewhere?</label>
-              <select name="affordability" class="fld">
-                <option>No — hiring a developer is out of reach</option>
-                <option>Maybe a little, but not market rate</option>
-                <option>Not sure</option>
-              </select></div>
             <div class="grid sm:grid-cols-2 gap-4">
               <div><label class="fld-label">Your name</label><input name="name" required class="fld" /></div>
+              <div><label class="fld-label">Your role</label><input name="role" class="fld" placeholder="e.g. Owner, Director, Volunteer" /></div>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-4">
               <div><label class="fld-label">Email</label><input type="email" name="email" required class="fld" placeholder="you@example.com" /></div>
+              <div><label class="fld-label">Phone <span class="font-normal text-slate-400">(optional)</span></label><input type="tel" name="phone" class="fld" /></div>
             </div>
           </div>
+
+          <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mt-7 mb-3">Your organization</p>
+          <div class="space-y-4">
+            <div><label class="fld-label">Organization name</label><input name="organization" required class="fld" placeholder="e.g. Riverside Community Café" /></div>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div><label class="fld-label">What kind?</label>
+                <select name="type" class="fld">
+                  <option>Charity / nonprofit</option>
+                  <option>Community group / mutual aid</option>
+                  <option>Small local business</option>
+                  <option>Social enterprise</option>
+                  <option>Other</option>
+                </select></div>
+              <div><label class="fld-label">Location <span class="font-normal text-slate-400">(optional)</span></label><input name="location" class="fld" placeholder="City / region" /></div>
+            </div>
+            <div><label class="fld-label">Website or social <span class="font-normal text-slate-400">(optional)</span></label><input name="website" class="fld" placeholder="https://…  or  @yourhandle" /></div>
+            <div><label class="fld-label">What do you do?</label><textarea name="about" rows="2" class="fld" placeholder="Your mission or business, and who you serve"></textarea></div>
+          </div>
+
+          <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mt-7 mb-3">What you need</p>
+          <div class="space-y-4">
+            <div><label class="fld-label">What's the problem?</label><textarea name="problem" rows="3" required class="fld" placeholder="What's slow, manual, or impossible today?"></textarea></div>
+            <div><label class="fld-label">What would success look like? <span class="font-normal text-slate-400">(optional)</span></label><textarea name="goal" rows="2" class="fld" placeholder="How would you know this worked?"></textarea></div>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div><label class="fld-label">Timeline</label>
+                <select name="timeline" class="fld">
+                  <option>No rush</option>
+                  <option>Within a few months</option>
+                  <option>Fairly urgent</option>
+                </select></div>
+              <div><label class="fld-label">Could you pay elsewhere?</label>
+                <select name="affordability" class="fld">
+                  <option>No — hiring a developer is out of reach</option>
+                  <option>Maybe a little, but not market rate</option>
+                  <option>Not sure</option>
+                </select></div>
+            </div>
+            <div><label class="fld-label">Anything else? <span class="font-normal text-slate-400">(optional)</span></label><textarea name="notes" rows="2" class="fld" placeholder="Constraints, tools you already use, how you heard about us…"></textarea></div>
+          </div>
+
           <button type="submit" class="mt-6 w-full px-6 py-3 rounded-xl bg-emerald-600 text-white font-semibold hover:bg-emerald-700 transition">Send request</button>
           <p class="text-xs text-slate-400 mt-3 text-center">Free, no obligation. Your details stay private.</p>
         </form>
@@ -350,8 +379,15 @@
               <div><label class="fld-label">Name</label><input name="name" required class="fld" /></div>
               <div><label class="fld-label">Email</label><input type="email" name="email" required class="fld" placeholder="you@example.com" /></div>
             </div>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div><label class="fld-label">Company / employer <span class="font-normal text-slate-400">(optional)</span></label><input name="company" class="fld" placeholder="Where you work or study" /></div>
+              <div><label class="fld-label">Availability</label><input name="availability" class="fld" placeholder="e.g. a few hours a week" /></div>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div><label class="fld-label">LinkedIn <span class="font-normal text-slate-400">(optional)</span></label><input name="linkedin" class="fld" placeholder="linkedin.com/in/…" /></div>
+              <div><label class="fld-label">GitHub <span class="font-normal text-slate-400">(optional)</span></label><input name="github" class="fld" placeholder="github.com/…" /></div>
+            </div>
             <div><label class="fld-label">What are you good at?</label><textarea name="skills" rows="3" required class="fld" placeholder="Languages, frameworks, data, design, product — whatever you bring"></textarea></div>
-            <div><label class="fld-label">Rough availability</label><input name="availability" class="fld" placeholder="e.g. a few hours a week, weekends" /></div>
             <div><label class="fld-label">Causes you care about <span class="font-normal text-slate-400">(optional)</span></label><textarea name="interests" rows="2" class="fld" placeholder="Helps us match you to the right organization"></textarea></div>
           </div>
           <button type="submit" class="mt-6 w-full px-6 py-3 rounded-xl bg-ink text-white font-semibold hover:bg-slate-700 transition">Sign up</button>

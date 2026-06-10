@@ -26,8 +26,8 @@ function doPost(e) {
     const isVolunteer = formType === "volunteer-signup";
     const tabName = isVolunteer ? "Volunteers" : "Help requests";
     const columns = isVolunteer
-      ? ["timestamp", "name", "email", "skills", "availability", "interests"]
-      : ["timestamp", "organization", "type", "about", "problem", "affordability", "name", "email"];
+      ? ["timestamp", "name", "email", "company", "linkedin", "github", "availability", "skills", "interests"]
+      : ["timestamp", "name", "role", "email", "phone", "organization", "type", "location", "website", "about", "problem", "goal", "timeline", "affordability", "notes"];
 
     const ss = SpreadsheetApp.getActiveSpreadsheet();
     let sheet = ss.getSheetByName(tabName);
@@ -66,13 +66,23 @@ function doGet() {
 function prettyHeader(key) {
   return ({
     timestamp: "Timestamp",
+    name: "Name",
+    role: "Role",
+    email: "Email",
+    phone: "Phone",
     organization: "Organization",
     type: "Type",
+    location: "Location",
+    website: "Website / social",
     about: "What they do",
     problem: "Problem",
+    goal: "Success looks like",
+    timeline: "Timeline",
     affordability: "Can pay elsewhere?",
-    name: "Name",
-    email: "Email",
+    notes: "Anything else",
+    company: "Company / employer",
+    linkedin: "LinkedIn",
+    github: "GitHub",
     skills: "Skills",
     availability: "Availability",
     interests: "Interests / causes",

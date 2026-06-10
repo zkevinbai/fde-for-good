@@ -8,9 +8,34 @@ body:
       value: |
         Thanks for reaching out! You don't need to know the technical solution — just tell us what's painful today. A volunteer will follow up to scope it with you. (Not sure if you're a fit? See [who we help](https://github.com/zkevinbai/fde-for-good/blob/main/docs/who-we-help.md).)
   - type: input
+    id: name
+    attributes:
+      label: Your name
+    validations:
+      required: true
+  - type: input
+    id: role
+    attributes:
+      label: Your role
+      description: e.g. Owner, Director, Volunteer
+    validations:
+      required: false
+  - type: input
+    id: email
+    attributes:
+      label: Email
+    validations:
+      required: true
+  - type: input
+    id: phone
+    attributes:
+      label: Phone (optional)
+    validations:
+      required: false
+  - type: input
     id: org
     attributes:
-      label: Organization
+      label: Organization name
       description: Your charity, group, or business name.
     validations:
       required: true
@@ -26,6 +51,20 @@ body:
         - Other
     validations:
       required: true
+  - type: input
+    id: location
+    attributes:
+      label: Location (optional)
+      description: City / region.
+    validations:
+      required: false
+  - type: input
+    id: website
+    attributes:
+      label: Website or social (optional)
+      description: A link or @handle, if you have one.
+    validations:
+      required: false
   - type: textarea
     id: about
     attributes:
@@ -40,6 +79,23 @@ body:
       description: What's slow, manual, painful, or impossible today? In your own words.
     validations:
       required: true
+  - type: textarea
+    id: goal
+    attributes:
+      label: What would success look like? (optional)
+      description: How would you know this worked?
+    validations:
+      required: false
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: Timeline
+      options:
+        - No rush
+        - Within a few months
+        - Fairly urgent
+    validations:
+      required: false
   - type: dropdown
     id: affordability
     attributes:
@@ -51,20 +107,10 @@ body:
         - "Not sure"
     validations:
       required: true
-  - type: input
-    id: contact
+  - type: textarea
+    id: notes
     attributes:
-      label: Point of contact
-      description: Who would we work with? (name + how to reach you — an email is fine)
-    validations:
-      required: true
-  - type: dropdown
-    id: urgency
-    attributes:
-      label: Timeline
-      options:
-        - No rush
-        - Would help within a few months
-        - Fairly urgent
+      label: Anything else? (optional)
+      description: Constraints, tools you already use, how you heard about us…
     validations:
       required: false
