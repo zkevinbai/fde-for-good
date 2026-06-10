@@ -1,0 +1,36 @@
+name: Volunteer sign-up
+description: Introduce yourself as a volunteer engineer.
+title: "[Volunteer] <your name or handle>"
+labels: ["volunteer"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Welcome! Tell us a bit about you so we can point you at a good first engagement.
+  - type: input
+    id: name
+    attributes:
+      label: Name / handle
+    validations:
+      required: true
+  - type: textarea
+    id: skills
+    attributes:
+      label: What you're good at
+      description: Languages, frameworks, data, design, product — whatever you bring.
+    validations:
+      required: true
+  - type: input
+    id: availability
+    attributes:
+      label: Rough availability
+      description: e.g. "a few hours a week", "weekends"
+    validations:
+      required: false
+  - type: textarea
+    id: interests
+    attributes:
+      label: Causes you care about (optional)
+      description: Helps us match you to the right organization.
+    validations:
+      required: false
