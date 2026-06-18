@@ -1,5 +1,7 @@
 # FDE for Good
 
+**🌐 Live at [fdeforgood.com](https://www.fdeforgood.com)**
+
 > Pro bono forward-deployed engineering for mission-driven organizations and the small local businesses that can't afford an engineer. The work is done by volunteers, for free, and open-sourced for everyone.
 
 **FDE for Good** pairs experienced engineers with organizations that have a real technical problem but no budget and no in-house engineering. A "forward-deployed engineer" (FDE) embeds with them, understands their actual workflow, and ships software that fits — a first website, a booking system, an automation that saves hours a week, a dashboard, a data clean-up — whatever moves them forward.

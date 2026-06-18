@@ -12,6 +12,23 @@ python3 -m http.server 8000
 # open http://localhost:8000
 ```
 
+## Where it's deployed
+
+Live in production on **Vercel** (project `fde-for-good`, team "Kevin's projects"):
+
+| URL | Role |
+|-----|------|
+| https://www.fdeforgood.com | Primary (custom domain) |
+| https://fdeforgood.com | Redirects to www |
+| https://fde-for-good.vercel.app | Vercel default URL |
+
+Custom domain DNS is at Squarespace: an `A @ → 76.76.21.21` record and a
+`CNAME www → cname.vercel-dns.com` record point it at Vercel.
+
+Deploys are currently triggered manually via the Vercel CLI (`vercel deploy
+--prod`). To get automatic deploys on every push, connect the GitHub repo in
+the Vercel dashboard (Project → Settings → Git).
+
 ## Deploy
 
 The site is static (one `index.html`, no build), so any static host works.
